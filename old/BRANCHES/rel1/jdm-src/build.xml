@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="JavaDownloadManagerBuilder" default="start" basedir=".">
+	
+	<property name="src" value="src"/>
+	<property name="classes" value="bin"/>
+	<property name="dist" value="dist"/>
+	<property name="version" value="1.0" />
+	
+    <target name="clean" >
+        <delete dir="${classes}" />
+    	<delete dir="${dist}" />
+    	
+    	<mkdir dir="${classes}"/>
+    	<mkdir dir="${dist}"/>
+    </target>
+
+	
+    <target name="compile" depends="clean">
+        <javac srcdir="${src}"
+         destdir="${classes}"
+         debug="on"
+         verbose="true">
+        </javac>
+    </target>
+
+    <target name="createJar" depends="compile">
+        <jar destfile="${dist}/DownloadManager-${version}.jar" basedir="${classes}" >
+        	<manifest>
+        		<attribute name="Main-Class" value="org.download.controller.DownloadManager"/>
+        		<attribute name="SplashScreen-Image" value="org.download.resources.jdmlogo"/>
+        	</manifest>
+        </jar>
+    </target>
+
+    <target name="start" depends="createJar">
+		
+    </target>
+
+</project>
