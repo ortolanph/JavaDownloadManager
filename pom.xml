@@ -14,7 +14,7 @@
     </properties>
 
     <build>
-        <finalName>jdm-${version}</finalName>
+        <finalName>jdm-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -28,13 +28,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
                 <configuration>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>org.jdm.controller</mainClass>
-                            <splashScreenImage>org.jdm.resources.jdmlogo</splashScreenImage>
+                            <mainClass>org.jdm.controller.DownloadManager</mainClass>
                         </manifest>
+                        <manifestEntries>
+                            <SplashScreen-Image>jdmlogo.png</SplashScreen-Image>
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
