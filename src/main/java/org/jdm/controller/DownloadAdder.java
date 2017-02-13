@@ -17,7 +17,29 @@ public class DownloadAdder extends DownloadAdderWindow implements ActionListener
         super(parent);
         setSize(800, 220);
         setLocation(Centralizer.getCenterPosition(getWidth(), getHeight()));
-        addActionListener(this);
+        addActionListener(event -> {
+            switch(event.getActionCommand()) {
+                case "ADD":
+                    this.action = ACTION_ACCEPTED;
+                    dispose();
+                    break;
+                case "...":
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setMultiSelectionEnabled(false);
+                    fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+                    int faction = fileChooser.showDialog(this, "Select");
+
+                    if (faction == JFileChooser.APPROVE_OPTION) {
+                        setSaveToContents(fileChooser.getSelectedFile().getPath());
+                    }
+                    break;
+                case "CANCEL":
+                    this.action = ACTION_CANCELED;
+                    dispose();
+                    break;
+            }
+        });
     }
 
     public int showDialog() {
@@ -28,27 +50,6 @@ public class DownloadAdder extends DownloadAdderWindow implements ActionListener
     public void actionPerformed(ActionEvent e) {
         String action = e.getActionCommand();
 
-        if (action.equals("ADD")) {
-            this.action = ACTION_ACCEPTED;
-            dispose();
-        }
 
-        if (action.equals("...")) {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setMultiSelectionEnabled(false);
-            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-            int faction = fileChooser.showDialog(this, "Select");
-
-
-            if (faction == JFileChooser.APPROVE_OPTION) {
-                setSaveToContents(fileChooser.getSelectedFile().getPath());
-            }
-        }
-
-        if (action.equals("CANCEL")) {
-            this.action = ACTION_CANCELED;
-            dispose();
-        }
     }
 }

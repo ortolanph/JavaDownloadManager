@@ -26,7 +26,7 @@ public class DownloadSorter {
 
             pos[NUMBER_OF_GROUPS] = data.size();
 
-            Vector<DownloadBean> tempData = new Vector<>();
+            List<DownloadBean> tempData = new ArrayList<>();
 
             for (int i = 1; i < NUMBER_OF_GROUPS + 1; i++) {
                 for (int j = pos[i - 1]; j < pos[i]; j++) {
@@ -66,8 +66,7 @@ public class DownloadSorter {
         Thread thread = new Thread(dst);
         thread.start();
 
-        while (!dst.isFinished()) {
-        }
+        while (!dst.isFinished()) {}
 
         return dst.getData();
     }

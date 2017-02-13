@@ -30,7 +30,7 @@ public class DownloadProcess implements Runnable, PropertyChangeListener {
     public void run() {
         Iterator<DownloadBean> iter = downloads.iterator();
 
-        while (iter.hasNext()) { // || tasks > 0) {
+        while (iter.hasNext()) {
             DownloadBean download = iter.next();
 
             createTask(download);
