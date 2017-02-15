@@ -6,18 +6,19 @@ import org.jdm.controller.DownloadTableModel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 public class DownloadManagerWindow extends JFrame {
     private static final long serialVersionUID = 1L;
     private GridBagConstraints constraints;
     private JTable tblDownloads = new JTable();
-    private JButton btnStart = new JButton("Start");
-    private JButton btnNewDownload = new JButton("New Download");
-    private JButton btnDelDownload = new JButton("Remove Download");
-    private JButton btnDelDownloadCompleted = new JButton("Remove Completed Download");
-    private JButton btnSaveList = new JButton("Save List");
-    private JButton btnLoadList = new JButton("Load List");
-    private JButton btnExit = new JButton("Exit");
+    private JButton btnStart = new JButton("Start", new ImageIcon(getImage("icons/01-start.png")));
+    private JButton btnNewDownload = new JButton("New Download", new ImageIcon(getImage("icons/02-new-download.png")));
+    private JButton btnDelDownload = new JButton("Remove Download", new ImageIcon(getImage("icons/03-remove-download.png")));
+    private JButton btnDelDownloadCompleted = new JButton("Remove Completed Download", new ImageIcon(getImage("icons/04-remove-completed-download.png")));
+    private JButton btnSaveList = new JButton("Save List", new ImageIcon(getImage("icons/05-save-list.png")));
+    private JButton btnLoadList = new JButton("Load List", new ImageIcon(getImage("icons/06-load-list.png")));
+    private JButton btnExit = new JButton("Exit", new ImageIcon(getImage("icons/07-exit.png")));
 
     public DownloadManagerWindow() {
         Container container = getContentPane();
@@ -91,5 +92,10 @@ public class DownloadManagerWindow extends JFrame {
         constraints.fill = fill;
 
         return constraints;
+    }
+
+    private Image getImage(final String pathAndFileName) {
+        final URL url = Thread.currentThread().getContextClassLoader().getResource(pathAndFileName);
+        return Toolkit.getDefaultToolkit().getImage(url);
     }
 }
